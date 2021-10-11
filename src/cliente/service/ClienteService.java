@@ -23,34 +23,12 @@ public class ClienteService implements Execute {
 
 	@Override
 	public void execute() {
-		//visualizarClientes();
 		//ordenarClientesPeloNome();
-		//buscarNomeClientes();
+		//buscarNomeDosClientes();
 		filtrarClientesNascidosNoAno();
 		
 	}
-	
-	/* ------------------------------------------------------------------------------- */
-	public void visualizarClientes() {
-		visualizarClientesForma1(); System.out.println();
-		visualizarClientesForma2(); System.out.println();
-		visualizarClientesForma3(); System.out.println();
-	}
-	
-	
-	private void visualizarClientesForma1() {
-		for(int i = 0; i < clientes.size(); i++) {
-			System.out.println(clientes.get(i));
-		}
-	}
-	
-	private void visualizarClientesForma2() {
-		clientes.forEach(cliente -> System.out.println(cliente));
-	}
-	
-	private void visualizarClientesForma3() {
-		clientes.forEach(System.out::println);
-	}
+
 	/* ------------------------------------------------------------------------------- */
 	
 	public void ordenarClientesPeloNome() {
@@ -84,17 +62,17 @@ public class ClienteService implements Execute {
 	
 	/* ------------------------------------------------------------------------------- */
 	
-	public void buscarNomeClientes() {
-		buscarNomesClientesForma1(); System.out.println();
-		buscarNomesClientesForma2(); System.out.println();
-		buscarNomesClientesForma3(); System.out.println();
-		buscarNomesClientesForma4(); System.out.println();
-		buscarNomesClientesForma5(); System.out.println();
-		buscarNomesClientesForma6(); System.out.println();
+	public void buscarNomeDosClientes() {
+		buscarNomeDosClientesForma1(); System.out.println();
+		buscarNomeDosClientesForma2(); System.out.println();
+		buscarNomeDosClientesForma3(); System.out.println();
+		buscarNomeDosClientesForma4(); System.out.println();
+		buscarNomeDosClientesForma5(); System.out.println();
+		buscarNomeDosClientesForma6(); System.out.println();
 		
 	}
 	
-	private void buscarNomesClientesForma1() {
+	private void buscarNomeDosClientesForma1() {
 		List<String> nomeClientes = new ArrayList<>();
 		
 		for(Cliente cliente : clientes) {
@@ -104,13 +82,13 @@ public class ClienteService implements Execute {
 		nomeClientes.forEach(System.out::println);
 	}
 	
-	private void buscarNomesClientesForma2() {
+	private void buscarNomeDosClientesForma2() {
 		Function<Cliente, String> function = cliente -> cliente.getNome();
 		List<String> nomeClientes = clientes.stream().map(function).collect(Collectors.toList());
 		nomeClientes.forEach(System.out::println);
 	}
 	
-	private void buscarNomesClientesForma3() {
+	private void buscarNomeDosClientesForma3() {
 		String nomeClientes = clientes.stream().map((Cliente cliente) -> {
 			return cliente.getNome();
 		}).collect(Collectors.joining(", "));
@@ -118,17 +96,17 @@ public class ClienteService implements Execute {
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomesClientesForma4() {
+	private void buscarNomeDosClientesForma4() {
 		String nomeClientes = clientes.stream().map((Cliente cliente) -> cliente.getNome()).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomesClientesForma5() {
+	private void buscarNomeDosClientesForma5() {
 		String nomeClientes = clientes.stream().map(cliente -> cliente.getNome()).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomesClientesForma6() {
+	private void buscarNomeDosClientesForma6() {
 		String nomeClientes = clientes.stream().map(Cliente::getNome).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
@@ -156,7 +134,7 @@ public class ClienteService implements Execute {
 	
 	private void filtrarClientesNascidosNoAnoForma2(int ano) {
 		Predicate<Cliente> predicate = cliente -> cliente.getDataNascimento().getYear() == ano;
-		List<Cliente> clientesFiltrados = clientes.stream().filter(predicate).collect(ArrayList::new, List::add, List::addAll);
+		List<Cliente> clientesFiltrados = clientes.stream().filter(predicate).collect(Collectors.toList());
 		
 		clientesFiltrados.forEach(System.out::println);
 	}

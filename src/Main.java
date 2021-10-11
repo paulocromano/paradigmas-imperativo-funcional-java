@@ -4,7 +4,7 @@ import util.ExecuteService;
 public class Main {
 
 	public static void main(String[] args) {
-		Execute execute = ExecuteService.CARRO.getExecute();
+		Execute execute = ExecuteService.CLIENTE.getExecute();
 		execute.execute();
 	}
 }

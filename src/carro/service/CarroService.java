@@ -103,11 +103,11 @@ public class CarroService implements Execute {
 					? carrosAgrupadosPeloAnoEPrecoMaior.get(carro.getAno()) : new HashMap<>();
 			
 			boolean precoCarroMaior = carro.getPreco() > preco;
-			List<Carro> carrosComPrecoMaior = carrosAgrupadosPeloPreco.containsKey(precoCarroMaior)
+			List<Carro> carrosConformePreco = carrosAgrupadosPeloPreco.containsKey(precoCarroMaior)
 					? carrosAgrupadosPeloPreco.get(precoCarroMaior) : new ArrayList<>();
 			
-			carrosComPrecoMaior.add(carro);
-			carrosAgrupadosPeloPreco.put(precoCarroMaior, carrosComPrecoMaior);
+			carrosConformePreco.add(carro);
+			carrosAgrupadosPeloPreco.put(precoCarroMaior, carrosConformePreco);
 			carrosAgrupadosPeloAnoEPrecoMaior.put(carro.getAno(), carrosAgrupadosPeloPreco);
 		}
 		
