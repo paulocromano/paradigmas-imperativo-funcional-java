@@ -136,13 +136,13 @@ public class ClienteService implements Execute {
 	/* ------------------------------------------------------------------------------- */
 	
 	public void filtrarClientesNascidosNoAno() {
-		final int ano = 1996;
-		filtrarClientesNascidosNoAnoForma1(ano); System.out.println();
-		filtrarClientesNascidosNoAnoForma2(ano); System.out.println();
-		filtrarClientesNascidosNoAnoForma3(ano); System.out.println();
+		final int ANO = 1996;
+		filtrarClientesNascidosNoAnoForma1(ANO); System.out.println();
+		filtrarClientesNascidosNoAnoForma2(ANO); System.out.println();
+		filtrarClientesNascidosNoAnoForma3(ANO); System.out.println();
 	}
 	
-	public void filtrarClientesNascidosNoAnoForma1(int ano) {
+	private void filtrarClientesNascidosNoAnoForma1(int ano) {
 		List<Cliente> clientesFiltrados = new ArrayList<>();
 		
 		for(int i = 0; i < clientes.size(); i++) {
@@ -154,14 +154,14 @@ public class ClienteService implements Execute {
 		clientesFiltrados.forEach(System.out::println);
 	}
 	
-	public void filtrarClientesNascidosNoAnoForma2(int ano) {
+	private void filtrarClientesNascidosNoAnoForma2(int ano) {
 		Predicate<Cliente> predicate = cliente -> cliente.getDataNascimento().getYear() == ano;
 		List<Cliente> clientesFiltrados = clientes.stream().filter(predicate).collect(ArrayList::new, List::add, List::addAll);
 		
 		clientesFiltrados.forEach(System.out::println);
 	}
 	
-	public void filtrarClientesNascidosNoAnoForma3(int ano) {
+	private void filtrarClientesNascidosNoAnoForma3(int ano) {
 		clientes.stream().filter(cliente -> cliente.getDataNascimento().getYear() == ano).forEach(System.out::println);
 	}
 	
