@@ -24,7 +24,7 @@ public class ClienteService implements Execute {
 	@Override
 	public void execute() {
 		//ordenarClientesPeloNome();
-		//buscarNomeDosClientes();
+		//gerarListaComNomeDosClientes();
 		filtrarClientesNascidosNoAno();
 		
 	}
@@ -32,13 +32,16 @@ public class ClienteService implements Execute {
 	/* ------------------------------------------------------------------------------- */
 	
 	public void ordenarClientesPeloNome() {
-		ordenarClientesPeloNomeForma1(); System.out.println();
-		ordenarClientesPeloNomeForma2(); System.out.println();
-		ordenarClientesPeloNomeForma3(); System.out.println();
+		System.out.println("\t Ordenação de Clientes pelo nome");
+		ordenarClientesPeloNomeForma1();
+		ordenarClientesPeloNomeForma2();
+		ordenarClientesPeloNomeForma3();
 	}
 	
 	
 	private void ordenarClientesPeloNomeForma1() {
+		System.out.println("Forma 1 - Paradigma Imperativo");
+		
 		Comparator<Cliente> comparator = new Comparator<>() {
 
 			@Override
@@ -48,31 +51,41 @@ public class ClienteService implements Execute {
 		};
 		
 		Collections.sort(clientes, comparator);
-		clientes.forEach(System.out::println);
+		
+		for (int i = 0; i < clientes.size(); i++) {
+			System.out.println(clientes.get(i));
+		}
 	}
 	
 	private void ordenarClientesPeloNomeForma2() {
+		System.out.println("\nForma 2 - Paradigma Funcional");
+		
 		Comparator<Cliente> comparator = (Cliente cliente, Cliente cliente2) -> cliente.getNome().compareTo(cliente2.getNome());
-		clientes.stream().sorted(comparator).forEach(System.out::println);
+		clientes.stream().sorted(comparator).forEach((Cliente cliente) -> System.out.println(cliente));
 	}
 	
 	private void ordenarClientesPeloNomeForma3() {
+		System.out.println("\nForma 3 - Paradigma Funcional");
+		
 		clientes.stream().sorted(Comparator.comparing(Cliente::getNome)).forEach(System.out::println);
 	}
 	
 	/* ------------------------------------------------------------------------------- */
 	
-	public void buscarNomeDosClientes() {
-		buscarNomeDosClientesForma1(); System.out.println();
-		buscarNomeDosClientesForma2(); System.out.println();
-		buscarNomeDosClientesForma3(); System.out.println();
-		buscarNomeDosClientesForma4(); System.out.println();
-		buscarNomeDosClientesForma5(); System.out.println();
-		buscarNomeDosClientesForma6(); System.out.println();
+	public void gerarListaComNomeDosClientes() {
+		System.out.println("\t Gerar lista com o nome dos Clientes");
+		gerarListaComNomeDosClientesForma1();
+		gerarListaComNomeDosClientesForma2();
+		gerarListaComNomeDosClientesForma3();
+		gerarListaComNomeDosClientesForma4();
+		gerarListaComNomeDosClientesForma5();
+		gerarListaComNomeDosClientesForma6();
 		
 	}
 	
-	private void buscarNomeDosClientesForma1() {
+	private void gerarListaComNomeDosClientesForma1() {
+		System.out.println("Forma 1 - Paradigma Imperativo");
+		
 		List<String> nomeClientes = new ArrayList<>();
 		
 		for(Cliente cliente : clientes) {
@@ -82,13 +95,17 @@ public class ClienteService implements Execute {
 		nomeClientes.forEach(System.out::println);
 	}
 	
-	private void buscarNomeDosClientesForma2() {
+	private void gerarListaComNomeDosClientesForma2() {
+		System.out.println("\nForma 2 - Paradigma Funcional");
+		
 		Function<Cliente, String> function = cliente -> cliente.getNome();
 		List<String> nomeClientes = clientes.stream().map(function).collect(Collectors.toList());
 		nomeClientes.forEach(System.out::println);
 	}
 	
-	private void buscarNomeDosClientesForma3() {
+	private void gerarListaComNomeDosClientesForma3() {
+		System.out.println("\nForma 3 - Paradigma Funcional");
+		
 		String nomeClientes = clientes.stream().map((Cliente cliente) -> {
 			return cliente.getNome();
 		}).collect(Collectors.joining(", "));
@@ -96,17 +113,23 @@ public class ClienteService implements Execute {
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomeDosClientesForma4() {
+	private void gerarListaComNomeDosClientesForma4() {
+		System.out.println("\nForma 4 - Paradigma Funcional");
+		
 		String nomeClientes = clientes.stream().map((Cliente cliente) -> cliente.getNome()).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomeDosClientesForma5() {
+	private void gerarListaComNomeDosClientesForma5() {
+		System.out.println("\nForma 5 - Paradigma Funcional");
+		
 		String nomeClientes = clientes.stream().map(cliente -> cliente.getNome()).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
 	
-	private void buscarNomeDosClientesForma6() {
+	private void gerarListaComNomeDosClientesForma6() {
+		System.out.println("\nForma 6 - Paradigma Funcional");
+		
 		String nomeClientes = clientes.stream().map(Cliente::getNome).collect(Collectors.joining(", "));
 		System.out.println(nomeClientes);
 	}
@@ -115,12 +138,15 @@ public class ClienteService implements Execute {
 	
 	public void filtrarClientesNascidosNoAno() {
 		final int ANO = 1996;
-		filtrarClientesNascidosNoAnoForma1(ANO); System.out.println();
-		filtrarClientesNascidosNoAnoForma2(ANO); System.out.println();
-		filtrarClientesNascidosNoAnoForma3(ANO); System.out.println();
+		System.out.println("\t Filtrar Clientes nascidos no ano de " + ANO);
+		filtrarClientesNascidosNoAnoForma1(ANO);
+		filtrarClientesNascidosNoAnoForma2(ANO);
+		filtrarClientesNascidosNoAnoForma3(ANO);
 	}
 	
 	private void filtrarClientesNascidosNoAnoForma1(int ano) {
+		System.out.println("Forma 1 - Paradigma Imperativo");
+		
 		List<Cliente> clientesFiltrados = new ArrayList<>();
 		
 		for(int i = 0; i < clientes.size(); i++) {
@@ -133,6 +159,8 @@ public class ClienteService implements Execute {
 	}
 	
 	private void filtrarClientesNascidosNoAnoForma2(int ano) {
+		System.out.println("\nForma 2 - Paradigma Funcional");
+		
 		Predicate<Cliente> predicate = cliente -> cliente.getDataNascimento().getYear() == ano;
 		List<Cliente> clientesFiltrados = clientes.stream().filter(predicate).collect(Collectors.toList());
 		
@@ -140,6 +168,8 @@ public class ClienteService implements Execute {
 	}
 	
 	private void filtrarClientesNascidosNoAnoForma3(int ano) {
+		System.out.println("\nForma 3 - Paradigma Funcional");
+		
 		clientes.stream().filter(cliente -> cliente.getDataNascimento().getYear() == ano).forEach(System.out::println);
 	}
 	
